@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ evento.title }}</h4>
+</div>
+
+<div class="modal-body">
+   <div class="container-fluid"></div>
+        <table class="table" width="100%">
+            <tr>
+                <td width="29%"><b>Centro de acopio</b></td>
+                <td width="1%" ><b>:</b></td> 
+                <td width="70%">{{centro}}</td>
+            </tr>
+            <tr class="alert alert-{{ estado | classestado}} ">
+                <td width="29%"><b>Estado de la visita</b></td>
+                <td width="1%" ><b>:</b></td> 
+                <td width="70%">{{estado | estadoVisita}}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Comentario realizado por el operador:</b></td>     
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <textarea  title="Ingrese comentario de la visita" ng-model="comentario" class="form-control" name="comentario"></textarea>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cerrar</button>
+</div>

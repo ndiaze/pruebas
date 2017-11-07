@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Detalle de la visita:</h4>
+</div>
+
+<div class="modal-body">
+   <div class="container-fluid">
+        <table width="100%">
+           <tr>
+                <td height="50"><b>CENTRO DE ACOPIO: {{ centro }}</b></td> 
+            </tr>  
+            <tr>
+                <td >
+                        <table class="table" width="100%">
+                            <tr>
+                                <td width="29%">Nombre cliente</td>
+                                <td width="1%" >:</td> 
+                                <td width="70%">{{nombre}}</td>
+                            </tr>
+                            <tr>
+                                <td width="29%">Dirección</td> 
+                                <td width="1%">:</td>
+                                <td width="70%">{{direccion}} #{{numero}}, {{comuna}}</td>
+                            </tr>
+                            <tr>
+                                <td width="29%">Teléfono</td>
+                                <td width="1%" >:</td>
+                                <td width="70%">{{telefono}}</td>
+                            </tr>
+                            <tr>
+                                <td width="29%">Celular</td>
+                                <td width="1%" >:</td>
+                                <td width="70%">{{celular}}</td>
+                            </tr>
+                            <tr>
+                                <td width="29%">Correo</td>
+                                <td width="1%" >:</td> 
+                                <td width="70%">{{correo}}</td>
+                            </tr>
+
+                            <tr>
+                                <td width="29%"><b>Estado</b></td>
+                                <td width="1%" ><b>:</b></td> 
+                                <td width="70%">  
+                                    <select name="estadocliente" ng-options="estado as estado.nombre for estado in estados track by estado.id" ng-model="estadocliente" class="form-control">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><b>Comentario:</b></td>     
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <textarea  title="Ingrese comentario de la visita" ng-model="comentario" class="form-control" name="comentario"></textarea>
+                                </td>     
+                            </tr>
+                        </table>
+                </td>
+            </tr>
+        </table>
+
+        <div class="alert alert-success"  ng-if="mensaje !=='' ">{{ mensaje }}</div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-info"    type="button" ng-click="guardar()">Guardar cambios</button>
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>
+</div>

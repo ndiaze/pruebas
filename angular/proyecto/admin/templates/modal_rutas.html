@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ evento.title }}</h4>
+</div>
+
+<div class="modal-body">
+   <div class="container-fluid">
+        <table class="table" border ="0">
+            <tr>
+                <th colspan="2" class="titulo_negrita" width="50%">Datos del operador</th>
+                <th colspan="2" class="titulo_negrita" width="50%">Datos del camión</th>
+            </tr>
+            <tr>
+                <td class="titulo_negrita"  width="20%">Nombre:</td>
+                <td class="texto" width="30%">{{evento.ruta_operador.nombre_operador}} {{evento.ruta_operador.apellido_operador}}</td>
+                <td class="titulo_negrita"  width="20%">Patente:</td>
+                <td class="texto" width="30%">{{evento.ruta_camion.patente_camion}}</td>
+            </tr>
+            <tr>
+                <td class="titulo_negrita" width="20%">N° de licencia</td>
+                <td class="texto" width="30%">{{evento.ruta_operador.licencia_operador}}</td>
+                <td class="titulo_negrita" width="20%">Capacidad:</td>
+                <td class="texto" width="30%">{{evento.ruta_camion.capacidad_camion}}</td>
+            </tr>
+
+            <tr>
+                <td class="titulo_negrita" >Centro de acopio</td>
+                <td class="texto">{{evento.ruta_operador.usuario.empresa.centro_de_acopio.nombre_centro}}</td>
+                <td colspan="4" rowspan="2">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="titulo_negrita">Clientes:</td>
+                <td colspan="3" >
+
+                        <div ng-repeat="x in evento.ruta_detalle">
+                            <table width="100%" style="border-bottom: 1px grey solid;">
+                            <tr>
+                                <td width="10%" class="titulo_negrita">Nombre: </td> 
+                                <td width="25%" class="texto">{{ x.ruta_cliente.cliente_nombre }}</td>
+                                <td width="10%" class="titulo_negrita">Estado:</td>
+                                <td width="10%" class="texto" >{{x.estado | estadoVisita}}</td>
+                                <td width="10%" class="titulo_negrita">Comentario:</td>
+                                <td width="35%" class="texto">{{ x.comentario  }}</td>
+                            </tr>
+                            </table>
+                        </div>
+
+                </td>
+            </tr>
+        </table>
+
+        <ui-gmap-google-map class="col-12"
+        center="map.center"
+        zoom="map.zoom"
+        options="map.options"
+        dragging="map.dragging"
+        control="map.control"
+        ng-cloak
+        >
+           
+        <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+            geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'>
+        </ui-gmap-polyline>
+            
+        <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'" click="onClick">
+            <ui-gmap-windows show="show">
+                <div ng-non-bindable>{{ruta_cliente.cliente_direccion +' '+ ruta_cliente.cliente_numero}}</div>
+            </ui-gmap-windows>
+        </ui-gmap-markers>
+            
+        </ui-gmap-google-map>
+       
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>
+</div>

@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ mensaje }} usuario</h4>
+</div>
+
+<div class="modal-body"> 
+    <div class="container-fluid" ng-if="accion === 0">
+        ¿Esta seguro de eliminar el usuario?
+    </div>
+    <div class="container-fluid" ng-if="accion === 1">
+        <div class="form-group row">
+        <label for="idempresa">(*) Seleccione Empresa </label>
+            <select ng-model="user.miempresa" name="miempresa" ng-options="empresa as empresa.nombre_empresa for empresa in empresas track by empresa.id_empresa"  class="form-control">
+                <option value="">--</option>
+            </select>
+            <div class="alert alert-info">
+                Los usuario de SARC, serán creados automáticamente como súper administradores.
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="username" class="col-2 col-form-label">(*) Nombre de usuario</label>
+            <div class="col-10">
+                <input class="form-control" type="text" value="" ng-model="user.username" name="username">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-2 col-form-label">(*) Clave de acceso</label>
+            <div class="col-10">
+                <input class="form-control" type="password" value="" ng-model="user.password" name="password">
+            </div>
+        </div>
+        <div style="color:red">(*) Campo requerido </div>
+    </div>
+    
+    
+    <div class="container-fluid" ng-if="accion === 2">
+        <div class="form-group row">
+            <label for="username" class="col-2 col-form-label">(*) Nueva clave de acceso</label>
+            <div class="col-10">
+                <input class="form-control" type="password" value="" ng-model="user.newpass" name="newpass">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-2 col-form-label">(*) Confirmar clave de acceso</label>
+            <div class="col-10">
+                <input class="form-control" type="password" value="" ng-model="user.confirpass" name="confirpass">
+            </div>
+        </div>
+        <div style="color:red">(*) Campo requerido </div>
+    </div>
+    
+    <div class="alert alert-danger"  ng-if="error !=='' ">{{ error }}</div>
+    <div class="alert alert-success"  ng-if="confirm !=='' ">{{ confirm }}</div>
+    
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-if="accion === 0">Aceptar</button>
+    <button class="btn btn-primary" type="button" ng-click="guardar()" ng-if="accion === 1">Aceptar</button>
+    <button class="btn btn-primary" type="button" ng-click="cambiarPass()" ng-if="accion === 2">Aceptar</button>
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>   
+</div>

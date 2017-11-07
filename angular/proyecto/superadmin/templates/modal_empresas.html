@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ mensaje }} empresa</h4>
+</div>
+
+<div class="modal-body">
+    
+    <div class="container-fluid" ng-if="accion === 0">
+        ¿Esta seguro de eliminar la empresa?
+    </div>
+    
+    <div class="container-fluid" ng-if="accion !== 0">
+        <div class="form-group row">
+          <label class="col-2 col-form-label">(*) Centro de acopio:</label>
+          <div class="col-10">
+            <select ng-options="centro as centro.nombre_centro for centro in centros track by centro.id_centro" ng-model="emp.centro" name="centro"  class="form-control">
+                <option value="">--</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label class="col-2 col-form-label">(*) Nombre/Razón social de la empresa</label>
+          <div class="col-10">
+            <input class="form-control" type="text" ng-model="emp.nombre" name="nombre">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">(*) RUT</label>
+          <div class="col-10">
+            <input class="form-control" type="text" ng-model="emp.rut" name="rut" placeholder="00.000.000-0" maxlength="13">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">(*) Dirección de la empresa</label>
+          <div class="col-10">
+            <input class="form-control" type="text" ng-model="emp.direccion" name="direccion">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Teléfono de la empresa</label>
+           <div class="input-group mb-2 mr-sm-2 mb-sm-0">        
+            <div class="input-group-addon">+56</div>
+            <input class="form-control col-2" type="number" ng-model="emp.telefono" name="telefono" placeholder="299999999">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Celular de la empresa</label>
+           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <div class="input-group-addon">+56</div>
+            <input class="form-control col-2"  type="number" ng-model="emp.celular" name="celular" placeholder="999999999">
+          </div>
+        </div>
+        <div style="color:red">(*) Campo requerido </div>
+	<div class="alert alert-danger"  ng-if="error !=='' ">{{ error }}</div>	
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-if="accion ===0">Aceptar</button>
+    <button class="btn btn-primary" type="button" ng-click="guardar()" ng-if="accion !==0">Aceptar</button>
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>   
+</div>

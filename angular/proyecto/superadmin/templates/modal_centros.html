@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ mensaje }} centro de acopio</h4>
+</div>
+
+<div class="modal-body"> 
+    <div class="container-fluid" ng-if="accion === 0">
+        ¿Esta seguro de eliminar el centro de acopio?
+    </div>
+    
+    <div class="container-fluid" ng-if="accion !== 0">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">(*) Nombre del centro de acopio:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.nombre" name="nombre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">(*) Dirección del centro de acopio:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.direccion" name="direccion">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">(*) Número de calle:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.numero" name="numero">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+        <label>(*) Seleccione Comuna:</label>
+            <select ng-model="centro.comuna" name="comuna" ng-options="comuna as comuna.comuna_nombre for comuna in comunas track by comuna.comuna_id"  class="form-control">
+                <option value="">--</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">(*) Tetha:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.tetha" name="tetha" placeholder="Ej: 73.9320632938135">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-2 col-form-label"> Coordenadas GPS:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.latitud" name="latitud" placeholder="Latitud">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="centro.longitud" name="longitud"  placeholder="Longitud">
+            </div>
+        </div>
+        <div style="color:red">(*) Campo requerido </div>
+    </div>
+    <div class="alert alert-danger"  ng-if="error !=='' ">{{ error }}</div>
+    <div class="alert alert-success"  ng-if="confirm !=='' ">{{ confirm }}</div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-if="accion === 0">Aceptar</button>
+    <button class="btn btn-primary" type="button" ng-click="guardar()" ng-if="accion !== 0">Aceptar</button>
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>   
+</div>

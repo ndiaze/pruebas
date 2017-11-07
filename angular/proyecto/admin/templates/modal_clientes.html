@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">{{ mensaje }} cliente</h4>
+</div>
+
+<div class="modal-body"> 
+    <div class="container-fluid" ng-if="accion === 0">
+        ¿Esta seguro de eliminar el registro del cliente?
+    </div>
+    
+    
+    <div class="container-fluid" ng-if="accion !== 0">
+        <div class="form-group row centrado">
+            <label class="col-2 col-form-label">(*) Nombre del cliente:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" value="" ng-model="cli.nombre" name="nombre" title="Indique nombre del cliente">
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group centrado">
+                <label>(*) Contenedores requeridos</label>
+                <div>
+                    <input class="form-control" type="text" ng-model="cli.demanda" name="demanda" title="Indique cantidad de contenedores requeridos por el cliente">
+                </div>
+            </div>
+            <div class="form-group centrado">
+                <label>(*) Frecuencia de visita:</label>
+                <div>
+                    <select ng-model="cli.frecuencia" name="frecuencia" ng-options="frecuencia as frecuencia.frecuencia_nombre for frecuencia in frecuencias track by frecuencia.frecuencia_id"  class="form-control">
+                        <option value="">--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group row centrado" >
+            <label class="col-2 col-form-label">(*) Dirección del cliente:</label>
+            <div class="col-8">
+                <input class="form-control" type="text" ng-model="cli.direccion" name="direccion">
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group row centrado">
+                <label>(*) Número de calle:</label>
+                <div>
+                    <input class="form-control" type="text" ng-model="cli.numero" name="numero">
+                </div>
+            </div>
+            <div class="form-group row centrado">
+                <label>(*) Comuna:</label>
+                <div>
+                    <select ng-model="cli.comuna" name="comuna" ng-options="comuna as comuna.comuna_nombre for comuna in comunas track by comuna.comuna_id"  class="form-control">
+                        <option value="">--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group row centrado">
+            <label class="col-2 col-form-label">(*) Theta:</label>
+            <div class="col-10">
+                <input class="form-control" type="text" ng-model="cli.theta" name="theta">
+            </div>
+        </div>
+
+        <div class="form-inline">
+            <div class="form-group centrado">
+                <label>(**) Teléfono:</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">        
+                    <div class="input-group-addon">+56</div>
+                    <input class="form-control" type="number" ng-model="cli.telefono" name="telefono" placeholder="299999999">
+                </div>
+            </div>
+            <div class="form-group centrado">
+                <label>(**) Celular:</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div class="input-group-addon">+56</div>
+                    <input class="form-control"  type="number" ng-model="cli.celular" name="celular" placeholder="999999999">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row centrado">
+            <label>Correo</label>
+            <div>
+                <input class="form-control" type="correo" value="" ng-model="cli.correo" name="correo">
+            </div>
+        </div>
+
+        <div style="color:red">
+            (*) Campo requerido<br>
+            (**)Debe ingresar teléfono o celular
+        </div>
+    </div>
+    <div class="alert alert-danger"  ng-if="error !=='' ">{{ error }}</div>
+    <div class="alert alert-success" ng-if="confirm !=='' ">{{ confirm }}</div>
+    
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()" ng-if="accion === 0">Aceptar</button>
+    <button class="btn btn-primary" type="button" ng-click="guardar()" ng-if="accion !== 0">Aceptar</button>
+    <button class="btn btn-danger"  type="button" ng-click="close()">Cancelar</button>   
+</div>

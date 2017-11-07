@@ -1,0 +1,35 @@
+<div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <a href="{{path('mis-rutas')}}"><i class="fa fa-reply-all fa-2x"></i></a>
+            <br><br>
+            <table class="table" width="100%">
+                <tr >
+                    <th width="70%">Cliente</th>
+                    <th width="20%">Estado</th>
+                    <th width="10%">Acciones</th>
+                </tr>
+                <tr ng-repeat="x in ruta.ruta_detalle" class="alert alert-{{x.estado|classestado}}">
+                    <td>{{$index + 1}}.- {{x.ruta_cliente.cliente_nombre }}</td> 
+                    <td><b>{{x.estado|estadoVisita}}</b></option>
+                    <td title="Agregar comentario">
+                        <i class="fa fa-comment fa-lg" ng-click="comentario(x)"></i>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-12  col-xs-12">
+            <ui-gmap-google-map class="col-11" center="map.center" zoom="map.zoom" options="map.options" dragging="map.dragging" control="map.control" ng-cloak>
+                <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'>
+                </ui-gmap-polyline>
+
+                <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'" click="onClick">
+                    <ui-gmap-windows show="show">
+                        <div ng-non-bindable>{{ruta_cliente.cliente_direccion +' '+ ruta_cliente.cliente_numero}}</div>
+                    </ui-gmap-windows>
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>
